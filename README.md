@@ -1,73 +1,84 @@
-# DaT SPECT Parkinson's classification
+# Parkinson's classification from DaT SPECT scans
 
-An end-to-end machine learning project for the [DrivenData DaT Parkinson's Challenge](https://www.drivendata.org/competitions/311/). It classifies DaT SPECT scans as pathological or non-pathological. The repository contains the training, evaluation, and inference code; competition images, labels, fitted weights, and per-scan predictions are deliberately excluded.
+English · [Italiano](README.it.md)
 
-> **Research/competition project only.** The reported scores are competition and internal validation results, not evidence of clinical validity. This code is not a diagnostic device.
+I built this pipeline for the [DrivenData DaT Parkinson's Challenge](https://www.drivendata.org/competitions/311/). Given a DaT SPECT scan, it estimates the probability that the scan is pathological. The project covers preprocessing, feature extraction, training, evaluation, and inference in the competition runtime.
 
-## What I built
+My aim was to identify **what information the previous model was missing** and test each change across acquisition protocols. The resulting system combines striatal measurements with a model that sees the images themselves.
 
-- A reproducible image pipeline that canonicalizes NIfTI volumes, measures striatal uptake, and generates brain-centered crops.
-- A tabular branch using 44 uptake and morphology features, plus a ResNet18 branch trained on three orthogonal maximum-intensity projections.
-- Grouped cross-validation, nested fusion fitting, and a leave-protocol-out stress test to check whether gains survive changes in acquisition protocol.
-- An experimental extension using rigid alignment and voxel-wise symmetry descriptors. The original model remains separate from the candidate, with packaging checks that tie model, fusion coefficients, and evaluation report to the same branch.
-- Synthetic phantom tests and a submission packager with artifact integrity checks.
+## The technical problem
+
+The scans come from different acquisition protocols. Orientation, resolution, and intensity scale can change without a change in the clinical label. A random validation split can reward acquisition-specific shortcuts. At the same time, summary measurements of the striatum are useful but compress an entire volume into a small number of values, losing some spatial detail.
 
 ```mermaid
 flowchart LR
-    A[DaT SPECT NIfTI] --> B[Orientation and normalization]
-    B --> C[44 striatal features]
-    B --> D[64³ brain crop]
-    D --> E[Three MIP views]
-    E --> F[ResNet18 ensemble]
-    C --> G[Tabular model]
-    F --> H[Calibrated logit fusion]
+    A[DaT SPECT scan] --> B[Orientation and normalization]
+    B --> C[44 striatal measurements]
+    B --> D[Brain-centered crop]
+    D --> E[MIP projections in three planes]
+    C --> F[Tabular model]
+    E --> G[ResNet18 ensemble]
+    F --> H[Probability fusion]
     G --> H
     H --> I[Pathology probability]
 ```
 
+## Why I made these choices
+
+**Normalize each scan independently.** I divide intensities by a reference measured within the same scan. Raw counts reflect the acquisition center and scanner settings as well as the underlying signal; within-scan ratios reduce that dependence. Each scan is also processed independently at inference time.
+
+**Center the crop on the brain.** Centering on the striatal signal could make the crop move as that signal deteriorates, removing information the model needs. The brain centroid provides a more stable reference. I also check the anterior-posterior direction: a reversed axis would change the meaning of caudate and putamen measurements without raising an execution error.
+
+**Combine interpretable features with images.** The 44 uptake, asymmetry, and morphology measurements provide a fast, readable tabular branch. Three maximum-intensity projections (MIPs) let ResNet18 use details that those measurements discard. I kept both branches because their complementary errors matter more than either branch's standalone score.
+
+**Validate for protocol shift.** I use folds grouped by acquisition fingerprint, fit fusion coefficients in nested validation, and run a leave-protocol-out stress test. This evaluates fusion on scans that did not contribute to choosing its weights and checks whether gains survive a change in acquisition protocol.
+
+**Try regularization before more capacity.** I compared logistic regression, SVM, tree ensembles, and shallow boosting. A more strongly regularized logistic model was weaker alone but improved fusion with the MIP branch. I then added voxel-wise symmetry descriptors after rigid alignment. The same descriptors without alignment worsened the external stress test, suggesting that matching corresponding voxels mattered more than simply adding features.
+
+**Keep artifacts verifiable.** The packager ties the tabular model, image checkpoint, fusion coefficients, and evaluation report together using a manifest and integrity checks. I keep the experimental candidate separate from the previously validated model so a new experiment cannot silently change its inference path.
+
 ## Results
 
-| Model | Grouped nested CV log loss / AUROC | Leave-protocol-out log loss / AUROC |
+| Configuration | Grouped CV with nested fusion, log loss / AUROC | Leave-protocol-out, log loss / AUROC |
 | --- | ---: | ---: |
-| Original tabular + MIP | 0.2374 / 0.9657 | 0.2409 / 0.9647 |
-| Regularized tabular + MIP | 0.2339 / 0.9667 | 0.2387 / 0.9648 |
+| Initial tabular model + MIP | 0.2374 / 0.9657 | 0.2409 / 0.9647 |
+| Regularized logistic model + MIP | 0.2339 / 0.9667 | 0.2387 / 0.9648 |
 | Registered symmetry ensemble + MIP | **0.2323 / 0.9673** | **0.2375 / 0.9652** |
 
-These estimates come from 1,362 labeled training scans. The original model's most recent public challenge score was **0.2675 log loss / 0.9544 AUROC**. The registered candidate has **no public score reported here**; its numbers are internal validation estimates. See [experimental decisions](docs/DECISIONS.md) and the aggregate JSON reports in [`experiments/risultati`](experiments/risultati) for the evaluation details. Small differences should be read with the documented group-level uncertainty in mind.
+The internal estimates use 1,362 labeled scans. The initial model's latest reported public challenge result was **0.2675 log loss / 0.9544 AUROC**. I do not report a public result for the registered candidate. Its internal gains are small and do not remove uncertainty across acquisition groups. The [decision log](docs/DECISIONS.md) records rejected experiments and observed limitations; [`experiments/risultati`](experiments/risultati) contains aggregate evaluation reports.
 
-## Run locally
+## Repository and reproduction
 
-Python 3.12 and the package versions in `requirements.txt` mirror the competition runtime. PyTorch and torchvision are required for the image branch and should be installed in compatible versions for your platform. A CUDA GPU is required by the image-training script. Access to the challenge data requires accepting the organizer's terms.
+| Path | Contents |
+| --- | --- |
+| `src/` | Shared preprocessing, measurements, alignment, models, and inference |
+| `scripts/` | Data inspection, training, evaluation, and packaging |
+| `submission_src/` | Competition runtime entry point |
+| `tests/` | Synthetic-volume and artifact-contract tests |
+| `docs/DECISIONS.md` | Experimental hypotheses, comparisons, and decisions |
+
+Python 3.12 and the packages in `requirements.txt` are needed to run the data-free tests:
 
 ```bash
 python -m venv .venv
-# Activate .venv with your shell's activation command.
+# Activate .venv using your shell's activation command.
 python -m pip install -r requirements.txt pytest
 python -m pytest -q
 ```
 
-The tabular and synthetic-scan tests run without challenge data. Image-model tests skip when PyTorch is unavailable; five runtime integration tests skip until a local `models/models.pkl` has been trained.
+Image-model tests skip if PyTorch is unavailable. Five runtime integration tests require a locally trained `models/models.pkl`.
 
-With authorized challenge data stored **outside this repository** in a directory containing `niftis/` and `train_labels.csv`:
+With data obtained under the competition terms and stored **outside this repository** in a directory containing `niftis/` and `train_labels.csv`:
 
 ```bash
-python scripts/00_inspect_data.py --data-dir /path/to/challenge-data
-python scripts/01_extract_features.py --data-dir /path/to/challenge-data --out features_v4.csv
+python scripts/00_inspect_data.py --data-dir /path/to/data
+python scripts/01_extract_features.py --data-dir /path/to/data --out features_v4.csv
 python scripts/02_train_cv.py --features features_v4.csv --out-dir models
-python scripts/08_extract_crops.py --data-dir /path/to/challenge-data --features features_v4.csv --out crops
+python scripts/08_extract_crops.py --data-dir /path/to/data --features features_v4.csv --out crops
 ```
 
-The GPU training entry point is `scripts/10_voxel_cnn.py`. It needs locally available ImageNet weights and the generated crops; run `python scripts/10_voxel_cnn.py --help` for configuration. The experiments in `scripts/37_gold_standard.py` and `scripts/39_registration_symmetry.py` consume the saved out-of-fold predictions from that stage. The final package is built by `scripts/03_pack_submission.py` after the appropriate model and evaluation artifacts exist.
+The image training entry point is `scripts/10_voxel_cnn.py`; it requires PyTorch, torchvision, local ImageNet weights, and a CUDA GPU. `scripts/37_gold_standard.py` and `scripts/39_registration_symmetry.py` reproduce the comparisons from saved out-of-fold predictions. `scripts/03_pack_submission.py` checks the required artifacts and creates the final package.
 
-## Repository map
+## Limitations and data
 
-| Path | Purpose |
-| --- | --- |
-| `src/` | Shared preprocessing, features, alignment, model, and inference code |
-| `scripts/` | Data inspection, training, evaluation, and packaging entry points |
-| `submission_src/` | Competition runtime entry point |
-| `tests/` | Synthetic and contract tests |
-| `docs/DECISIONS.md` | Experimental decisions, rejected alternatives, and limitations |
-| `experiments/risultati/*.json` | Aggregate evaluation summaries only |
-
-The [competition rules](https://www.drivendata.org/competitions/311/dat-parkinsons-challenge/rules/) permit public sharing of participant code but restrict sharing the challenge data. No scans, labels, fitted model weights, or per-scan predictions are included. The code is released under the [MIT License](LICENSE).
+This is a research and competition project, **not a diagnostic device**. Internal validation metrics do not establish clinical performance or generalization to hospitals outside the challenge. The [DrivenData rules](https://www.drivendata.org/competitions/311/dat-parkinsons-challenge/rules/) allow public sharing of participant code while restricting distribution of challenge data. This repository therefore excludes scans, labels, fitted weights, and per-scan predictions. The code is released under the [MIT License](LICENSE).
