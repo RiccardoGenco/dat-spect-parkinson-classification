@@ -1,0 +1,114 @@
+{
+  "partizione": "gruppi",
+  "n": 1362,
+  "tabular_branch": "gold_logistic_C0.1_0.3",
+  "config_cnn": {
+    "arch": "premip",
+    "norm": "batch",
+    "autonorm": false,
+    "epochs": 40,
+    "patience": 8,
+    "batch": 32,
+    "lr": 0.0001,
+    "wd": 0.0001,
+    "dropout": 0.3,
+    "cosine": false,
+    "mixup": 0.0,
+    "smooth": 0.0,
+    "gradi": 0.0,
+    "scala": 0.0,
+    "shift": 4.0,
+    "sfoca": 0.0,
+    "rumore": 0.0,
+    "gamma": 0.0,
+    "guadagno": 0.0,
+    "flip": true,
+    "mirror_channel": false,
+    "tta": true,
+    "amp": true,
+    "riduci": 1,
+    "early_stop": true,
+    "preaddestrato": "models/torchhub"
+  },
+  "train_seeds": [
+    0
+  ],
+  "fold_seed": 0,
+  "complessivo": {
+    "solo_sbr": {
+      "log_loss": 0.314465505976159,
+      "auroc": 0.9369880606436586
+    },
+    "fusione_gold": {
+      "log_loss": 0.2387240727356926,
+      "auroc": 0.9648349495543149
+    }
+  },
+  "per_fold": [
+    {
+      "fold": "2.46x2.46x2.46",
+      "n": 528,
+      "incumbent": {
+        "log_loss": 0.24922779843362866,
+        "auroc": 0.9649750353975707
+      },
+      "gold": {
+        "log_loss": 0.24564977383333067,
+        "auroc": 0.965705343170132
+      },
+      "delta_log_loss": 0.003578024600297991
+    },
+    {
+      "fold": "3.90x3.90x3.90",
+      "n": 325,
+      "incumbent": {
+        "log_loss": 0.24377984920961263,
+        "auroc": 0.9649081854964208
+      },
+      "gold": {
+        "log_loss": 0.23867654292453336,
+        "auroc": 0.966464363523187
+      },
+      "delta_log_loss": 0.005103306285079268
+    },
+    {
+      "fold": "2.30x2.30x2.30",
+      "n": 207,
+      "incumbent": {
+        "log_loss": 0.24598240525810225,
+        "auroc": 0.9731142643764004
+      },
+      "gold": {
+        "log_loss": 0.2419254768205839,
+        "auroc": 0.9719940253920836
+      },
+      "delta_log_loss": 0.004056928437518342
+    },
+    {
+      "fold": "2.40x2.40x2.40",
+      "n": 149,
+      "incumbent": {
+        "log_loss": 0.1585318669283361,
+        "auroc": 0.9851449275362318
+      },
+      "gold": {
+        "log_loss": 0.1589747055502463,
+        "auroc": 0.9858695652173913
+      },
+      "delta_log_loss": -0.00044283862191019097
+    },
+    {
+      "fold": "(39 gruppi rari)",
+      "n": 153,
+      "incumbent": {
+        "log_loss": 0.2793533175295107,
+        "auroc": 0.9528399311531843
+      },
+      "gold": {
+        "log_loss": 0.2882576810633581,
+        "auroc": 0.949053356282272
+      },
+      "delta_log_loss": -0.008904363533847381
+    }
+  ]
+}

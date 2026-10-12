@@ -1,0 +1,109 @@
+{
+  "partizione": "gruppi",
+  "n": 1362,
+  "tabular_branch": "gold_registered_equal_ensemble_v1",
+  "config_cnn": {
+    "arch": "premip",
+    "norm": "batch",
+    "autonorm": false,
+    "epochs": 40,
+    "patience": 8,
+    "batch": 32,
+    "lr": 0.0001,
+    "wd": 0.0001,
+    "dropout": 0.3,
+    "cosine": false,
+    "mixup": 0.0,
+    "smooth": 0.0,
+    "gradi": 0.0,
+    "scala": 0.0,
+    "shift": 4.0,
+    "sfoca": 0.0,
+    "rumore": 0.0,
+    "gamma": 0.0,
+    "guadagno": 0.0,
+    "flip": true,
+    "mirror_channel": false,
+    "tta": true,
+    "amp": true,
+    "riduci": 1,
+    "early_stop": true,
+    "preaddestrato": "models/torchhub"
+  },
+  "train_seeds": [
+    0
+  ],
+  "fold_seed": 0,
+  "complessivo": {
+    "solo_sbr": {
+      "log_loss": 0.2963956384127702,
+      "auroc": 0.9443301661932282
+    },
+    "fusione": {
+      "log_loss": 0.23750387463056952,
+      "auroc": 0.9651723424864771
+    }
+  },
+  "per_fold": [
+    {
+      "fold": "2.46x2.46x2.46",
+      "n": 528,
+      "solo_sbr": {
+        "log_loss": 0.30679281131763897,
+        "auroc": 0.9548252477829942
+      },
+      "fusione": {
+        "log_loss": 0.24554445067994843,
+        "auroc": 0.9660034279752591
+      }
+    },
+    {
+      "fold": "3.90x3.90x3.90",
+      "n": 325,
+      "solo_sbr": {
+        "log_loss": 0.29024776650587086,
+        "auroc": 0.9496965452847805
+      },
+      "fusione": {
+        "log_loss": 0.2414270879704196,
+        "auroc": 0.9647914721444133
+      }
+    },
+    {
+      "fold": "2.30x2.30x2.30",
+      "n": 207,
+      "solo_sbr": {
+        "log_loss": 0.2892237247877961,
+        "auroc": 0.9463218820014936
+      },
+      "fusione": {
+        "log_loss": 0.2362987017567231,
+        "auroc": 0.9724607916355489
+      }
+    },
+    {
+      "fold": "2.40x2.40x2.40",
+      "n": 149,
+      "solo_sbr": {
+        "log_loss": 0.23729215911696644,
+        "auroc": 0.9730072463768116
+      },
+      "fusione": {
+        "log_loss": 0.15996375516301406,
+        "auroc": 0.9858695652173912
+      }
+    },
+    {
+      "fold": "(39 gruppi rari)",
+      "n": 153,
+      "solo_sbr": {
+        "log_loss": 0.34083587116712283,
+        "auroc": 0.9201376936316695
+      },
+      "fusione": {
+        "log_loss": 0.2785658360425212,
+        "auroc": 0.9526678141135974
+      }
+    }
+  ]
+}

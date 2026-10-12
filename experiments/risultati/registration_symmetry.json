@@ -1,0 +1,434 @@
+{
+  "n": 1362,
+  "min_gain": 0.001,
+  "elapsed_extraction_seconds": 48.88463258743286,
+  "arms": {
+    "gold": {
+      "n_features": 44,
+      "tabular_oof": {
+        "log_loss": 0.31192979000270915,
+        "auroc": 0.9381047224126862
+      },
+      "nested_fusion": {
+        "log_loss": 0.2338544373305902,
+        "auroc": 0.9667352336173964
+      },
+      "deployment_coefficients": {
+        "a": 0.4472285465832774,
+        "b": 1.0332707506591094
+      },
+      "external": {
+        "overall": {
+          "log_loss": 0.2387240727356926,
+          "auroc": 0.9648349495543149
+        },
+        "per_fold": [
+          {
+            "fold": "2.46x2.46x2.46",
+            "n": 528,
+            "log_loss": 0.24564977383333067,
+            "auroc": 0.965705343170132
+          },
+          {
+            "fold": "3.90x3.90x3.90",
+            "n": 325,
+            "log_loss": 0.23867654292453336,
+            "auroc": 0.966464363523187
+          },
+          {
+            "fold": "2.30x2.30x2.30",
+            "n": 207,
+            "log_loss": 0.2419254768205839,
+            "auroc": 0.9719940253920836
+          },
+          {
+            "fold": "2.40x2.40x2.40",
+            "n": 149,
+            "log_loss": 0.1589747055502463,
+            "auroc": 0.9858695652173913
+          },
+          {
+            "fold": "(39 gruppi rari)",
+            "n": 153,
+            "log_loss": 0.2882576810633581,
+            "auroc": 0.949053356282272
+          }
+        ]
+      }
+    },
+    "raw_symmetry": {
+      "n_features": 54,
+      "tabular_oof": {
+        "log_loss": 0.30883653526635196,
+        "auroc": 0.9390777200944701
+      },
+      "nested_fusion": {
+        "log_loss": 0.2343235528820818,
+        "auroc": 0.9667504707175586
+      },
+      "deployment_coefficients": {
+        "a": 0.4440263567326171,
+        "b": 1.0208072727900617
+      },
+      "external": {
+        "overall": {
+          "log_loss": 0.24009357073263138,
+          "auroc": 0.9645672119371796
+        },
+        "per_fold": [
+          {
+            "fold": "2.46x2.46x2.46",
+            "n": 528,
+            "log_loss": 0.24914891691982463,
+            "auroc": 0.9660779491765407
+          },
+          {
+            "fold": "3.90x3.90x3.90",
+            "n": 325,
+            "log_loss": 0.24349292880673865,
+            "auroc": 0.9658807967631496
+          },
+          {
+            "fold": "2.30x2.30x2.30",
+            "n": 207,
+            "log_loss": 0.2381256375928223,
+            "auroc": 0.9718073188946975
+          },
+          {
+            "fold": "2.40x2.40x2.40",
+            "n": 149,
+            "log_loss": 0.15797562366558338,
+            "auroc": 0.9855072463768115
+          },
+          {
+            "fold": "(39 gruppi rari)",
+            "n": 153,
+            "log_loss": 0.284256460353597,
+            "auroc": 0.9499139414802066
+          }
+        ]
+      }
+    },
+    "registered_symmetry": {
+      "n_features": 54,
+      "tabular_oof": {
+        "log_loss": 0.28763560688181045,
+        "auroc": 0.9474777157410128
+      },
+      "nested_fusion": {
+        "log_loss": 0.2323725398235117,
+        "auroc": 0.9671662258791264
+      },
+      "deployment_coefficients": {
+        "a": 0.4653447873612744,
+        "b": 0.958735748858326
+      },
+      "external": {
+        "overall": {
+          "log_loss": 0.237727580333478,
+          "auroc": 0.9650504456851798
+        },
+        "per_fold": [
+          {
+            "fold": "2.46x2.46x2.46",
+            "n": 528,
+            "log_loss": 0.2461574112861073,
+            "auroc": 0.9653029286832104
+          },
+          {
+            "fold": "3.90x3.90x3.90",
+            "n": 325,
+            "log_loss": 0.24673435626414222,
+            "auroc": 0.9636632430750078
+          },
+          {
+            "fold": "2.30x2.30x2.30",
+            "n": 207,
+            "log_loss": 0.2322222682141809,
+            "auroc": 0.9726474981329349
+          },
+          {
+            "fold": "2.40x2.40x2.40",
+            "n": 149,
+            "log_loss": 0.1625734176671149,
+            "auroc": 0.9847826086956522
+          },
+          {
+            "fold": "(39 gruppi rari)",
+            "n": 153,
+            "log_loss": 0.27014207004281426,
+            "auroc": 0.9564543889845094
+          }
+        ]
+      }
+    },
+    "gold_registered_equal_ensemble": {
+      "n_features": "44 + 54, media probabilita 1:1",
+      "tabular_oof": {
+        "log_loss": 0.29456709929546626,
+        "auroc": 0.9450180124291205
+      },
+      "nested_fusion": {
+        "log_loss": 0.2322545583837202,
+        "auroc": 0.9673251270665317
+      },
+      "deployment_coefficients": {
+        "a": 0.48111799943672573,
+        "b": 0.9837215288363012
+      },
+      "external": {
+        "overall": {
+          "log_loss": 0.23750387463056954,
+          "auroc": 0.9651723424864771
+        },
+        "per_fold": [
+          {
+            "fold": "2.46x2.46x2.46",
+            "n": 528,
+            "log_loss": 0.24554445067994848,
+            "auroc": 0.9660034279752591
+          },
+          {
+            "fold": "3.90x3.90x3.90",
+            "n": 325,
+            "log_loss": 0.2414270879704196,
+            "auroc": 0.9647914721444133
+          },
+          {
+            "fold": "2.30x2.30x2.30",
+            "n": 207,
+            "log_loss": 0.23629870175672313,
+            "auroc": 0.9724607916355489
+          },
+          {
+            "fold": "2.40x2.40x2.40",
+            "n": 149,
+            "log_loss": 0.1599637551630139,
+            "auroc": 0.9858695652173912
+          },
+          {
+            "fold": "(39 gruppi rari)",
+            "n": 153,
+            "log_loss": 0.2785658360425214,
+            "auroc": 0.9526678141135974
+          }
+        ]
+      }
+    }
+  },
+  "decisions": {
+    "raw_symmetry": {
+      "gain_nested": -0.00046911555149159456,
+      "gain_external": -0.0013694979969387788,
+      "promote": false
+    },
+    "registered_symmetry": {
+      "gain_nested": 0.0014818975070785,
+      "gain_external": 0.0009964924022146104,
+      "promote": false
+    },
+    "gold_registered_equal_ensemble": {
+      "gain_nested": 0.001599878946869998,
+      "gain_external": 0.0012201981051230548,
+      "promote": true
+    }
+  },
+  "stability_8_fold_seeds": {
+    "runs": [
+      {
+        "seed": 0,
+        "gold": 0.2338544373305902,
+        "registered_symmetry": 0.2323725398235117,
+        "gold_registered_equal_ensemble": 0.2322545583837202,
+        "gain": 0.0014818975070785,
+        "ensemble_gain": 0.001599878946869998
+      },
+      {
+        "seed": 1,
+        "gold": 0.23378645183641414,
+        "registered_symmetry": 0.2321393346902979,
+        "gold_registered_equal_ensemble": 0.23211553605486618,
+        "gain": 0.0016471171461162337,
+        "ensemble_gain": 0.0016709157815479603
+      },
+      {
+        "seed": 2,
+        "gold": 0.23396528926663718,
+        "registered_symmetry": 0.23263400148236577,
+        "gold_registered_equal_ensemble": 0.23243579063277162,
+        "gain": 0.0013312877842714121,
+        "ensemble_gain": 0.0015294986338655614
+      },
+      {
+        "seed": 3,
+        "gold": 0.23364505269722688,
+        "registered_symmetry": 0.23210354239528092,
+        "gold_registered_equal_ensemble": 0.23201259245188258,
+        "gain": 0.0015415103019459642,
+        "ensemble_gain": 0.0016324602453443027
+      },
+      {
+        "seed": 4,
+        "gold": 0.2338470558052126,
+        "registered_symmetry": 0.2325395056376342,
+        "gold_registered_equal_ensemble": 0.23232527074342052,
+        "gain": 0.0013075501675783863,
+        "ensemble_gain": 0.0015217850617920692
+      },
+      {
+        "seed": 5,
+        "gold": 0.234176750859938,
+        "registered_symmetry": 0.23260745607331915,
+        "gold_registered_equal_ensemble": 0.23255146150613648,
+        "gain": 0.0015692947866188522,
+        "ensemble_gain": 0.0016252893538015178
+      },
+      {
+        "seed": 6,
+        "gold": 0.2342087687749897,
+        "registered_symmetry": 0.23264015782350875,
+        "gold_registered_equal_ensemble": 0.232572262284307,
+        "gain": 0.0015686109514809476,
+        "ensemble_gain": 0.0016365064906826987
+      },
+      {
+        "seed": 7,
+        "gold": 0.2350801031257836,
+        "registered_symmetry": 0.23322740223425206,
+        "gold_registered_equal_ensemble": 0.23328787863237505,
+        "gain": 0.001852700891531528,
+        "ensemble_gain": 0.0017922244934085452
+      }
+    ],
+    "mean_gain": 0.001537496192077728,
+    "wins": 8,
+    "ensemble_mean_gain": 0.0016260698759140817,
+    "ensemble_wins": 8
+  },
+  "feature_diagnostics": {
+    "raw": [
+      {
+        "feature": "raw_reg_asym_l1_s1p0",
+        "eta2_within_class": 0.10869178834876488,
+        "auc_oriented": 0.6428423721988223,
+        "auc_grey_oriented": 0.5561656371539694
+      },
+      {
+        "feature": "raw_reg_asym_energy_s1p0",
+        "eta2_within_class": 0.013267623601940311,
+        "auc_oriented": 0.6744680619496959,
+        "auc_grey_oriented": 0.5469000228780599
+      },
+      {
+        "feature": "raw_reg_sym_corr_s1p0",
+        "eta2_within_class": 0.05598502763503823,
+        "auc_oriented": 0.6959393128067827,
+        "auc_grey_oriented": 0.5404941660947151
+      },
+      {
+        "feature": "raw_reg_sym_dice_s1p0",
+        "eta2_within_class": 0.06883637949274217,
+        "auc_oriented": 0.7529217139560953,
+        "auc_grey_oriented": 0.5022878059940518
+      },
+      {
+        "feature": "raw_reg_asym_ap_s1p0",
+        "eta2_within_class": 0.08165476295367619,
+        "auc_oriented": 0.6305852134826568,
+        "auc_grey_oriented": 0.5112102493708534
+      },
+      {
+        "feature": "raw_reg_asym_l1_s2p5",
+        "eta2_within_class": 0.1250580290298839,
+        "auc_oriented": 0.6231908664468171,
+        "auc_grey_oriented": 0.5676046671242279
+      },
+      {
+        "feature": "raw_reg_asym_energy_s2p5",
+        "eta2_within_class": 0.015203470049239535,
+        "auc_oriented": 0.6614925827973139,
+        "auc_grey_oriented": 0.5519331960649737
+      },
+      {
+        "feature": "raw_reg_sym_corr_s2p5",
+        "eta2_within_class": 0.06987074093559624,
+        "auc_oriented": 0.6567777886614208,
+        "auc_grey_oriented": 0.5502173415694349
+      },
+      {
+        "feature": "raw_reg_sym_dice_s2p5",
+        "eta2_within_class": 0.06211813905770278,
+        "auc_oriented": 0.7589751961776646,
+        "auc_grey_oriented": 0.5141843971631206
+      },
+      {
+        "feature": "raw_reg_asym_ap_s2p5",
+        "eta2_within_class": 0.07388715272039069,
+        "auc_oriented": 0.6274354872062776,
+        "auc_grey_oriented": 0.5006863417982155
+      }
+    ],
+    "registered": [
+      {
+        "feature": "reg_asym_l1_s1p0",
+        "eta2_within_class": 0.1204265607907253,
+        "auc_oriented": 0.7870658786909155,
+        "auc_grey_oriented": 0.5767558911004347
+      },
+      {
+        "feature": "reg_asym_energy_s1p0",
+        "eta2_within_class": 0.011407075164564295,
+        "auc_oriented": 0.6877961711344021,
+        "auc_grey_oriented": 0.5292839167238619
+      },
+      {
+        "feature": "reg_sym_corr_s1p0",
+        "eta2_within_class": 0.08794668001938327,
+        "auc_oriented": 0.8449777429501203,
+        "auc_grey_oriented": 0.6278883550674903
+      },
+      {
+        "feature": "reg_sym_dice_s1p0",
+        "eta2_within_class": 0.12843160894139155,
+        "auc_oriented": 0.8291050380383322,
+        "auc_grey_oriented": 0.5982612674445207
+      },
+      {
+        "feature": "reg_asym_ap_s1p0",
+        "eta2_within_class": 0.022841216740597137,
+        "auc_oriented": 0.7694343770746944,
+        "auc_grey_oriented": 0.5669183253260124
+      },
+      {
+        "feature": "reg_asym_l1_s2p5",
+        "eta2_within_class": 0.04122083972945264,
+        "auc_oriented": 0.8083695214462185,
+        "auc_grey_oriented": 0.5654312514298788
+      },
+      {
+        "feature": "reg_asym_energy_s2p5",
+        "eta2_within_class": 0.012912058212749657,
+        "auc_oriented": 0.6877308692765642,
+        "auc_grey_oriented": 0.5272248913292152
+      },
+      {
+        "feature": "reg_sym_corr_s2p5",
+        "eta2_within_class": 0.03772900330291457,
+        "auc_oriented": 0.8551147680151501,
+        "auc_grey_oriented": 0.638183482040723
+      },
+      {
+        "feature": "reg_sym_dice_s2p5",
+        "eta2_within_class": 0.06881457262367635,
+        "auc_oriented": 0.8658569236294773,
+        "auc_grey_oriented": 0.6310912834591627
+      },
+      {
+        "feature": "reg_asym_ap_s2p5",
+        "eta2_within_class": 0.017512481154884286,
+        "auc_oriented": 0.7634766709112875,
+        "auc_grey_oriented": 0.5536490505605125
+      }
+    ]
+  }
+}

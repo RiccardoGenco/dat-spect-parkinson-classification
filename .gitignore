@@ -1,0 +1,55 @@
+# === DATI DELLA COMPETIZIONE — NON COMMITTARE MAI ===
+# Il regolamento vieta di condividere o pubblicare i dati. Un push accidentale
+# su un remote pubblico sarebbe una violazione, non solo un errore di igiene.
+# I dati vivono in ../parkinson-data/ e non devono mai entrare qui.
+*.nii
+*.nii.gz
+*.dcm
+niftis/
+data/
+train_labels*.csv
+submission_format*.csv
+*.crdownload
+smoke_test_data*
+
+# Artefatti derivati dai dati
+features*.csv
+features*.parquet
+models/
+models_meta/
+crops*/
+*.pkl
+*.npy
+*.npz
+oof*
+*.oof.json
+*.oof.npy
+*.oof.npz
+*.pt
+*.pth
+*.ckpt
+submission.csv
+submission.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Baseline di verifica: feature derivate da esami reali, non condivisibili
+.verify/
+
+# === TESTO DI DRIVENDATA COPIATO ALLA LETTERA ===
+# Regolamento integrale e problem description. Servono in locale come fonte
+# contro cui verificare la conformita', ma sono materiale loro: ripubblicarli
+# in un repo pubblico e' una questione di copyright che non c'e' motivo di
+# aprire. Restano sul disco, fuori dalla storia di git.
+docs/GUIDELINES.md
+_probe

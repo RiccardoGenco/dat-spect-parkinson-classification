@@ -1,0 +1,177 @@
+{
+  "partizione": "gruppi",
+  "min_n": 120,
+  "n": 1362,
+  "config_cnn": {
+    "arch": "premip",
+    "norm": "batch",
+    "autonorm": false,
+    "epochs": 40,
+    "patience": 8,
+    "batch": 32,
+    "lr": 0.0001,
+    "wd": 0.0001,
+    "dropout": 0.3,
+    "cosine": false,
+    "mixup": 0.0,
+    "smooth": 0.0,
+    "gradi": 0.0,
+    "scala": 0.0,
+    "shift": 4.0,
+    "sfoca": 0.0,
+    "rumore": 0.0,
+    "gamma": 0.0,
+    "guadagno": 0.0,
+    "flip": true,
+    "mirror_channel": false,
+    "tta": true,
+    "amp": true,
+    "riduci": 1,
+    "early_stop": true,
+    "preaddestrato": "models/torchhub"
+  },
+  "train_seeds": [
+    0
+  ],
+  "fold_seed": 0,
+  "minuti": 17.539883196353912,
+  "gara": {
+    "log_loss": 0.2875,
+    "auroc": 0.9461,
+    "errore": 0.0239
+  },
+  "complessivo": {
+    "solo_sbr": {
+      "log_loss": 0.29748315260072467,
+      "auroc": 0.9449679476714445,
+      "guadagno_su_sbr": 0.0
+    },
+    "stimata_nel_fold": {
+      "log_loss": 0.25170196926295435,
+      "auroc": 0.9618245339079897,
+      "guadagno_su_sbr": 0.045781183337770315
+    },
+    "spedita_a0.658_b0.498": {
+      "log_loss": 0.2536412166891122,
+      "auroc": 0.961134510943503,
+      "guadagno_su_sbr": 0.04384193591161245
+    },
+    "robusta_a1_b0.498": {
+      "log_loss": 0.2651769561742521,
+      "auroc": 0.9583482983424212,
+      "guadagno_su_sbr": 0.03230619642647259
+    },
+    "robusta_a1_b0.30": {
+      "log_loss": 0.2720223869755817,
+      "auroc": 0.9548698860482581,
+      "guadagno_su_sbr": 0.02546076562514299
+    },
+    "robusta_a1_b0.25": {
+      "log_loss": 0.2748162657498939,
+      "auroc": 0.9536813922356091,
+      "guadagno_su_sbr": 0.022666886850830792
+    },
+    "robusta_a1_b0.20": {
+      "log_loss": 0.27812356035987706,
+      "auroc": 0.9524101827363655,
+      "guadagno_su_sbr": 0.0193595922408476
+    }
+  },
+  "per_fold": [
+    {
+      "fold": "2.46x2.46x2.46",
+      "n": 528,
+      "prevalenza": 0.5965909361839294,
+      "peso_blend": 0.28,
+      "sbr_log_loss": 0.3086014657023837,
+      "sbr_auroc": 0.9530069304717194,
+      "a_stimato": 0.5860164878046717,
+      "b_stimato": 0.5998690380303484,
+      "n_reti": 5,
+      "cnn_log_loss_out": 0.29930800642159483,
+      "cnn_auroc_out": 0.9589239138534913,
+      "ll::stimata_nel_fold": 0.2616991550346943,
+      "ll::spedita_a0.658_b0.498": 0.26671695751598923,
+      "ll::robusta_a1_b0.498": 0.2776176738858512,
+      "ll::robusta_a1_b0.30": 0.2851241453850522,
+      "ll::robusta_a1_b0.25": 0.287898451689013,
+      "ll::robusta_a1_b0.20": 0.2910847995403073
+    },
+    {
+      "fold": "3.90x3.90x3.90",
+      "n": 325,
+      "prevalenza": 0.5815384387969971,
+      "peso_blend": 0.1,
+      "sbr_log_loss": 0.2950668431863112,
+      "sbr_auroc": 0.9465841892312481,
+      "a_stimato": 0.610972455693088,
+      "b_stimato": 0.603930510675381,
+      "n_reti": 5,
+      "cnn_log_loss_out": 0.2679689707898186,
+      "cnn_auroc_out": 0.9612122626828509,
+      "ll::stimata_nel_fold": 0.25072643380222864,
+      "ll::spedita_a0.658_b0.498": 0.25517351225377877,
+      "ll::robusta_a1_b0.498": 0.2620674485727709,
+      "ll::robusta_a1_b0.30": 0.26918223567303934,
+      "ll::robusta_a1_b0.25": 0.27203586103605193,
+      "ll::robusta_a1_b0.20": 0.27540669194465095
+    },
+    {
+      "fold": "2.30x2.30x2.30",
+      "n": 207,
+      "prevalenza": 0.5024154782295227,
+      "peso_blend": 0.2,
+      "sbr_log_loss": 0.29436130395123494,
+      "sbr_auroc": 0.9508961911874534,
+      "a_stimato": 0.7432093050315032,
+      "b_stimato": 0.2571247344175173,
+      "n_reti": 5,
+      "cnn_log_loss_out": 0.2616540672134211,
+      "cnn_auroc_out": 0.970687079910381,
+      "ll::stimata_nel_fold": 0.26327897263515004,
+      "ll::spedita_a0.658_b0.498": 0.24781595378108284,
+      "ll::robusta_a1_b0.498": 0.2682293796146658,
+      "ll::robusta_a1_b0.30": 0.2707195684998419,
+      "ll::robusta_a1_b0.25": 0.2726974785832685,
+      "ll::robusta_a1_b0.20": 0.27535333596485223
+    },
+    {
+      "fold": "2.40x2.40x2.40",
+      "n": 149,
+      "prevalenza": 0.463087260723114,
+      "peso_blend": 0.08,
+      "sbr_log_loss": 0.21758743193646682,
+      "sbr_auroc": 0.976268115942029,
+      "a_stimato": 0.5082411440884266,
+      "b_stimato": 0.6439419575783885,
+      "n_reti": 5,
+      "cnn_log_loss_out": 0.22011718312949755,
+      "cnn_auroc_out": 0.9771739130434782,
+      "ll::stimata_nel_fold": 0.17201076592317452,
+      "ll::spedita_a0.658_b0.498": 0.1735584394032454,
+      "ll::robusta_a1_b0.498": 0.1629197709784944,
+      "ll::robusta_a1_b0.30": 0.17811030605325046,
+      "ll::robusta_a1_b0.25": 0.18314923142362116,
+      "ll::robusta_a1_b0.20": 0.1887408881138445
+    },
+    {
+      "fold": "(39 impronte rare)",
+      "n": 153,
+      "prevalenza": 0.4575163424015045,
+      "peso_blend": 0.1,
+      "sbr_log_loss": 0.34627737672769954,
+      "sbr_auroc": 0.9246127366609295,
+      "a_stimato": 0.5444336035906706,
+      "b_stimato": 0.6908550952651729,
+      "n_reti": 5,
+      "cnn_log_loss_out": 0.2785652947096609,
+      "cnn_auroc_out": 0.9530120481927711,
+      "ll::stimata_nel_fold": 0.2812188616606002,
+      "ll::spedita_a0.658_b0.498": 0.29113256324106324,
+      "ll::robusta_a1_b0.498": 0.32430349186548924,
+      "ll::robusta_a1_b0.30": 0.32606097661630895,
+      "ll::robusta_a1_b0.25": 0.32771309198682097,
+      "ll::robusta_a1_b0.20": 0.3299595248181141
+    }
+  ]
+}

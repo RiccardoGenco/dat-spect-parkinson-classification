@@ -1,0 +1,27 @@
+# Ambiente di sviluppo locale, fissato alle versioni dell'immagine ufficiale.
+#
+# Le versioni NON sono libere, e il commento precedente ("tanto la submission
+# gira nella loro immagine") era sbagliato proprio per questo motivo: i modelli
+# vengono serializzati qui con pickle e deserializzati dentro il container.
+# Allenare con una libreria piu' recente di quella che poi li legge e' la
+# direzione non supportata, e scikit-learn lo dice esplicitamente - "might lead
+# to breaking code or invalid results". Nel container si vedeva un
+# InconsistentVersionWarning per ogni stimatore del bundle.
+#
+# Versioni lette dall'immagine ufficiale il 1 agosto 2026 con:
+#   docker run --rm --entrypoint /code_execution/.venv/bin/python <img> \
+#       -c "import importlib.metadata as m; print(m.version('scikit-learn'))"
+# Vanno riverificate dopo ogni aggiornamento dell'immagine.
+scikit-learn==1.8.0
+lightgbm==4.6.0
+numpy==2.2.6
+scipy==1.15.3
+pandas==3.0.3
+nibabel==5.4.2
+
+# Sulla versione di Python: il container usa 3.12, l'ambiente locale 3.11. Non
+# e' allineabile senza installare un interprete nuovo, e il rischio e' basso -
+# il formato pickle e' compatibile fra le due, e le predizioni prodotte nel
+# container sono risultate bit-identiche a quelle locali (scarto massimo
+# esattamente 0 su 20 esami). Le versioni delle librerie erano il rischio vero,
+# ed e' quello che questo file chiude.
